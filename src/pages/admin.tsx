@@ -1,0 +1,9 @@
+import { Box, Heading } from '@chakra-ui/react';
+
+export default function Admin() {
+  return (
+    <Box p={4}>
+      <Heading as="h1">Admin</Heading>
+    </Box>
+  );
+}
