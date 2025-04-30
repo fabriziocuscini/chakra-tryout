@@ -8,7 +8,12 @@ export function ColorModeToggle() {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
   return (
-    <IconButton aria-label="toggle color mode" onClick={toggleColorMode} rounded="full">
+    <IconButton
+      aria-label="toggle color mode"
+      onClick={toggleColorMode}
+      rounded="full"
+      variant="subtle"
+    >
       {theme === 'light' ? <Moon /> : <Sun />}
     </IconButton>
   );

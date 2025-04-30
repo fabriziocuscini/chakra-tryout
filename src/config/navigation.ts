@@ -1,4 +1,4 @@
-import { NavItem } from '@components/navigation';
+import { NavItem } from '@components/nav-bar';
 
 /**
  * Application navigation configuration
@@ -31,9 +31,9 @@ export const adminNavItems: NavItem[] = [
  * Navigation configuration object
  * All navigation configurations should be exported from here
  */
-const navigationConfig = {
+const navigation = {
   mainNav: mainNavItems,
   adminNav: adminNavItems,
 };
 
-export default navigationConfig;
+export default navigation;
