@@ -1,54 +1,90 @@
-# React + TypeScript + Vite
+# 🚀 Chakra UI React Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React application built with Chakra UI, TypeScript, and React Router, following clean architecture principles.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🎨 **Chakra UI** - Beautiful and accessible UI components
+- 🧰 **TypeScript** - Type-safe code
+- 🧭 **React Router** - Modern routing with Data Router API
+- 🏗️ **Clean Architecture** - Separation of concerns for maintainability
+- 🔄 **Multiple Layouts** - Flexible layout system with multiple configurations
+- 📱 **Responsive Design** - Works on all device sizes
+- 🌙 **Dark Mode** - Built-in light/dark mode support
 
-## Expanding the ESLint configuration
+## 📦 Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+# Clone the repository
+git clone https://your-repository-url/chakra-tryout.git
+cd chakra-tryout
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+# Install dependencies
+pnpm install
+
+# Start the development server
+pnpm dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+# Run development server
+pnpm dev
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+# Build for production
+pnpm build
+
+# Run linting
+pnpm lint
+
+# Format code
+pnpm format
+
+# Preview production build
+pnpm preview
 ```
+
+## 🏛️ Project Structure
+
+```
+src/
+├── components/         # Reusable UI components
+│   ├── navigation.tsx  # Navigation component
+│   └── ...
+├── config/             # Application configuration
+│   ├── navigation.ts   # Navigation configuration
+│   └── ...
+├── layouts/            # Layout components
+├── pages/              # Page components
+├── routes/             # Route definitions
+├── App.tsx             # Application shell
+└── main.tsx           # Entry point
+```
+
+## 🛠️ Tech Stack
+
+- [React 19](https://react.dev/)
+- [Chakra UI 3](https://chakra-ui.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [React Router 7](https://reactrouter.com/)
+- [Vite](https://vitejs.dev/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [Phosphor Icons](https://phosphoricons.com/)
+
+## 🔍 Architecture
+
+This project is built with a focus on clean architecture principles:
+
+- 🧩 **Component-Based** - Modular components for easy reuse
+- 🗺️ **Configuration-Driven** - Centralized configuration for navigation and other app aspects
+- 📑 **Layout System** - Flexible layouts with nested routing
+- 🧪 **Maintainable** - Code organization that scales with your project
+
+## 📝 License
+
+MIT
+
+---
+
+Made with ❤️ and lots of ☕
