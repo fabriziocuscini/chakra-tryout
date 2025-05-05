@@ -58,8 +58,9 @@ src/
 ├── layouts/            # Layout components
 ├── pages/              # Page components
 ├── routes/             # Route definitions
-├── App.tsx             # Application shell
-└── main.tsx           # Entry point
+├── theme/              # Theme extension and customisatios
+├── app.tsx             # Application shell
+└── main.tsx            # Entry point
 ```
 
 ## 🛠️ Tech Stack
