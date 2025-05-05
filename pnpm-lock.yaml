@@ -75,6 +75,9 @@ importers:
       prettier:
         specifier: ^3.5.3
         version: 3.5.3
+      rampensau:
+        specifier: ^2.0.3
+        version: 2.0.3
       typescript:
         specifier: ~5.7.2
         version: 5.7.3
@@ -1610,6 +1613,9 @@ packages:
 
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
+
+  rampensau@2.0.3:
+    resolution: {integrity: sha512-ALRIIMoEb1Bpm5m/ZmiOyWBnRreheC1xPzdSO3jbTg0l9cP3EGGDLCOlHcJopBG/gtdt/cp9v6MtMbwIvxNWtQ==}
 
   react-dom@19.1.0:
     resolution: {integrity: sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g==}
@@ -3727,6 +3733,8 @@ snapshots:
   punycode@2.3.1: {}
 
   queue-microtask@1.2.3: {}
+
+  rampensau@2.0.3: {}
 
   react-dom@19.1.0(react@19.1.0):
     dependencies:

@@ -1,3 +1,17 @@
+// import { generateColorRamp, colorUtils } from 'rampensau';
+
+// const testPalette = generateColorRamp({
+//   total: 11,
+//   hStart: 249,
+//   hCycles: 0,
+//   hStartCenter: 0,
+//   lRange: [0.05, 0.95],
+//   sRange: [0.4, 0.4],
+// });
+
+// console.log(testPalette);
+// console.log(testPalette.map(color => colorUtils.colorToCSS(color, 'oklch')));
+
 // Valid color scale steps
 type ColorScale = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 950;
 
@@ -19,7 +33,7 @@ type SemanticPaletteResult = Record<string, { value: { _light: string; _dark: st
  * @returns An object with color scale values (50-950)
  * Inspired by https://meodai.github.io/rampensau/
  */
-export const generateColorRamp = (hexValuesCSV: string) => {
+export const generatePalette = (hexValuesCSV: string) => {
   const hexValues = hexValuesCSV.split(',').map(hex => hex.trim());
 
   if (hexValues.length !== 11) {

@@ -1,5 +1,5 @@
 import { createSystem, defaultConfig, defineConfig } from '@chakra-ui/react';
-import { generateColorRamp, generateSemanticPalette } from './utils';
+import { generatePalette, generateSemanticPalette } from './utils';
 
 const config = defineConfig({
   theme: {
@@ -13,13 +13,13 @@ const config = defineConfig({
     },
     tokens: {
       colors: {
-        blue: generateColorRamp(
+        blue: generatePalette(
           '#171f35, #1a233c, #222e52, #2e3f75, #3b54a2, #5672c7, #8499da, #afbde9, #d3dbf4, #eaeefa, #f3f5fc'
         ),
-        magenta: generateColorRamp(
+        magenta: generatePalette(
           '#1e0b1a, #250e20, #3c1734, #602453, #8f347b, #c047a5, #d378bf, #e3a6d6, #efcbe7, #f6e3f2, #f9ecf6'
         ),
-        mauve: generateColorRamp(
+        mauve: generatePalette(
           '#242328, #29282d, #37363d, #4e4c56, #6a6875, #8b8996, #adabb5, #cbcbd1, #e4e3e7, #f3f3f5, #f9f9f9'
         ),
       },
