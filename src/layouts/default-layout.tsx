@@ -11,7 +11,7 @@ export function DefaultLayout() {
     <Box minHeight="100vh" display="flex" flexDirection="column">
       <NavBar logoUrl={logoImage} appName="Chakra App" navItems={navigation.mainNav} />
 
-      <Box flex="1" p={4}>
+      <Box flex="1">
         <Outlet />
       </Box>
     </Box>

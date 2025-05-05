@@ -51,7 +51,7 @@ const config = defineConfig({
         }),
         accent: generateSemanticPalette('magenta', {
           contrast: { light: '#ffffff', dark: '#ffffff' },
-          fg: { light: 700, dark: 300 },
+          fg: { light: 600, dark: 500 },
           subtle: { light: 100, dark: 900 },
           muted: { light: 200, dark: 800 },
           emphasized: { light: 300, dark: 700 },
@@ -67,6 +67,18 @@ const config = defineConfig({
           solid: { light: 900, dark: 100 },
           focusRing: { light: 400, dark: 400 },
         }),
+        bg: {
+          DEFAULT: { value: { _light: '#FBFBFD', _dark: '#09090b' } },
+        },
+        text: {
+          fg: { value: { _light: '{colors.mauve.950}', _dark: '{colors.mauve.50}' } },
+          DEFAULT: { value: { _light: '{colors.text.fg}', _dark: '{colors.text.fg}' } },
+          default: { value: { _light: '{colors.text.fg}', _dark: '{colors.text.fg}' } },
+          muted: { value: { _light: '{colors.mauve.500}', _dark: '{colors.mauve.400}' } },
+          subtle: { value: { _light: '{colors.mauve.400}', _dark: '{colors.mauve.500}' } },
+          inverted: { value: { _light: '{colors.mauve.50}', _dark: '#000000' } },
+          accent: { value: { _light: '{colors.accent.fg}', _dark: '{colors.accent.fg}' } },
+        },
       },
     },
   },
