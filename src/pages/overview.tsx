@@ -1,4 +1,4 @@
-import { Box, Button, Heading, HStack, VStack } from '@chakra-ui/react';
+import { Button, Heading, HStack, VStack } from '@chakra-ui/react';
 
 export default function Overview() {
   return (

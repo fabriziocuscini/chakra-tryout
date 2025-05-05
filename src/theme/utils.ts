@@ -10,6 +10,9 @@ type SemanticColorConfig = {
 // Full semantic palette mapping type
 type SemanticPaletteMapping = Record<string, SemanticColorConfig>;
 
+// Define a precise return type for generateSemanticPalette to avoid using `any`
+type SemanticPaletteResult = Record<string, { value: { _light: string; _dark: string } }>;
+
 /**
  * Generates a color ramp from a CSV string of 11 hex values
  * @param hexValuesCSV A comma-separated string of 11 hex colors from darkest (950) to lightest (50)
@@ -48,12 +51,15 @@ export const generateColorRamp = (hexValuesCSV: string) => {
  * @param mapping Object with semantic color definitions for light/dark modes
  * @returns Semantic color tokens object
  */
-export const generateSemanticPalette = (colorName: string, mapping: SemanticPaletteMapping) => {
-  const result: Record<string, any> = {};
+export const generateSemanticPalette = (
+  colorName: string,
+  mapping: SemanticPaletteMapping
+): SemanticPaletteResult => {
+  const result: SemanticPaletteResult = {};
 
   Object.entries(mapping).forEach(([key, config]) => {
     // Initialize the value object
-    result[key] = { value: {} };
+    result[key] = { value: { _light: '', _dark: '' } };
 
     // Process light mode value
     if (typeof config.light === 'number') {
