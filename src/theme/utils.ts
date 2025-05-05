@@ -58,10 +58,10 @@ export const generateSemanticPalette = (colorName: string, mapping: SemanticPale
     // Process light mode value
     if (typeof config.light === 'number') {
       // If it's a number, reference the color scale
-      result[key].value.base = `{colors.${colorName}.${config.light}}`;
+      result[key].value._light = `{colors.${colorName}.${config.light}}`;
     } else {
       // If it's a string (hex value), use directly
-      result[key].value.base = config.light;
+      result[key].value._light = config.light;
     }
 
     // Process dark mode value

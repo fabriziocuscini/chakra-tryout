@@ -30,7 +30,7 @@ interface NavLinkProps {
 // Custom component that combines Button and Link
 const NavLink = ({ to, children, isActive }: NavLinkProps) => (
   <Link to={to} style={{ textDecoration: 'none' }}>
-    <Button variant={isActive ? 'subtle' : 'ghost'} colorPalette={isActive ? 'purple' : 'gray'}>
+    <Button variant={isActive ? 'subtle' : 'ghost'} colorPalette={isActive ? 'accent' : 'neutral'}>
       {children}
     </Button>
   </Link>
