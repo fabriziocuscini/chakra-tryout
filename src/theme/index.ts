@@ -1,5 +1,5 @@
 import { createSystem, defaultConfig, defineConfig } from '@chakra-ui/react';
-import { generateColorRamp, generateSemanticPalette } from './util';
+import { generateColorRamp, generateSemanticPalette } from './utils';
 
 const config = defineConfig({
   theme: {
