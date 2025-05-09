@@ -14,7 +14,13 @@
       "@layouts": ["./src/layouts"],
       "@layouts/*": ["./src/layouts/*"],
       "@config": ["./src/config"],
-      "@config/*": ["./src/config/*"]
+      "@config/*": ["./src/config/*"],
+      "@pages": ["./src/pages"],
+      "@pages/*": ["./src/pages/*"],
+      "@sections": ["./src/sections"],
+      "@sections/*": ["./src/sections/*"],
+      "@types": ["./src/types"],
+      "@types/*": ["./src/types/*"]
     },
 
     /* Bundler mode */

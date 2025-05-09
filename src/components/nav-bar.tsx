@@ -72,12 +72,14 @@ export default function NavBar({
     <Flex
       as="nav"
       w="100%"
-      h="64px"
+      h="{sizes.navbar}"
       px={4}
       justifyContent="space-between"
       bg="bg.panel"
       borderBottom="1px solid"
       borderColor="border"
+      position="fixed"
+      zIndex="{zIndex.sticky}"
     >
       <Flex>
         {/* Left side: Logo and App Name */}

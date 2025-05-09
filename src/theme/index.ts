@@ -1,5 +1,11 @@
-import { createSystem, defaultConfig, defineConfig } from '@chakra-ui/react';
+import { createSystem, defaultConfig, defineConfig, defineRecipe } from '@chakra-ui/react';
 import { generatePalette, generateSemanticPalette } from './utils';
+
+const headingRecipe = defineRecipe({
+  base: {
+    fontWeight: 'medium',
+  },
+});
 
 const config = defineConfig({
   theme: {
@@ -11,6 +17,7 @@ const config = defineConfig({
       xl: '1536px',
       '2xl': '1920px',
     },
+    recipes: { heading: headingRecipe },
     tokens: {
       colors: {
         blue: generatePalette(
@@ -36,6 +43,9 @@ const config = defineConfig({
           lg: { value: '{spacing.6}' },
           xl: { value: '{spacing.8}' },
         },
+      },
+      sizes: {
+        navbar: { value: '4rem' },
       },
     },
     semanticTokens: {

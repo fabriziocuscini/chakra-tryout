@@ -29,7 +29,7 @@ type SemanticPaletteResult = Record<string, { value: { _light: string; _dark: st
 
 /**
  * Generates a color ramp from a CSV string of 11 hex values
- * @param hexValuesCSV A comma-separated string of 11 hex colors from darkest (950) to lightest (50)
+ * @param hexValuesCSV A colour ramp as comma-separated string of 11 hex colors from darkest (950) to lightest (50)
  * @returns An object with color scale values (50-950)
  * Inspired by https://meodai.github.io/rampensau/
  */
