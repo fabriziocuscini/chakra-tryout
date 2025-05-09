@@ -4,7 +4,7 @@ export default function Overview() {
   return (
     <VStack gap={4} alignItems="flex-start">
       <Heading as="h1">Overview</Heading>
-      <HStack gap="{spacing.gutter}">
+      <HStack gap="{spacing.gutter}" flexWrap="wrap">
         <Button colorPalette="blue" variant="solid">
           Solid
         </Button>
@@ -21,7 +21,7 @@ export default function Overview() {
           Ghost
         </Button>
       </HStack>
-      <HStack gap="{spacing.gutter}">
+      <HStack gap="{spacing.gutter}" flexWrap="wrap">
         <Button colorPalette="accent" variant="solid">
           Solid
         </Button>
@@ -38,7 +38,7 @@ export default function Overview() {
           Ghost
         </Button>
       </HStack>
-      <HStack gap="{spacing.gutter}">
+      <HStack gap="{spacing.gutter}" flexWrap="wrap">
         <Button colorPalette="neutral" variant="solid">
           Solid
         </Button>

@@ -1,96 +1,12 @@
 import { createSystem, defaultConfig, defineConfig, defineRecipe } from '@chakra-ui/react';
-import { generatePalette, generateSemanticPalette } from './utils';
-
-const headingRecipe = defineRecipe({
-  base: {
-    fontWeight: 'medium',
-  },
-});
+import { breakpoints, tokens, semanticTokens, recipes } from './config';
 
 const config = defineConfig({
   theme: {
-    breakpoints: {
-      xs: '480px',
-      sm: '768px',
-      md: '1024px',
-      lg: '1280px',
-      xl: '1536px',
-      '2xl': '1920px',
-    },
-    recipes: { heading: headingRecipe },
-    tokens: {
-      colors: {
-        blue: generatePalette(
-          '#171f35, #1a233c, #222e52, #2e3f75, #3b54a2, #5672c7, #8499da, #afbde9, #d3dbf4, #eaeefa, #f3f5fc'
-        ),
-        magenta: generatePalette(
-          '#1e0b1a, #250e20, #3c1734, #602453, #8f347b, #c047a5, #d378bf, #e3a6d6, #efcbe7, #f6e3f2, #f9ecf6'
-        ),
-        mauve: generatePalette(
-          '#242328, #29282d, #37363d, #4e4c56, #6a6875, #8b8996, #adabb5, #cbcbd1, #e4e3e7, #f3f3f5, #f9f9f9'
-        ),
-      },
-      fonts: {
-        body: { value: 'Inter, sans-serif' },
-        heading: { value: 'Inter, sans-serif' },
-      },
-      spacing: {
-        gutter: {
-          DEFAULT: { value: '{spacing.4}' },
-          xs: { value: '{spacing.1}' },
-          sm: { value: '{spacing.2}' },
-          md: { value: '{spacing.4}' },
-          lg: { value: '{spacing.6}' },
-          xl: { value: '{spacing.8}' },
-        },
-      },
-      sizes: {
-        navbar: { value: '4rem' },
-      },
-    },
-    semanticTokens: {
-      colors: {
-        blue: generateSemanticPalette('blue', {
-          contrast: { light: '#ffffff', dark: '#ffffff' },
-          fg: { light: 700, dark: 300 },
-          subtle: { light: 100, dark: 900 },
-          muted: { light: 200, dark: 800 },
-          emphasized: { light: 300, dark: 700 },
-          solid: { light: 500, dark: 600 },
-          focusRing: { light: 400, dark: 400 },
-        }),
-        accent: generateSemanticPalette('magenta', {
-          contrast: { light: '#ffffff', dark: '#ffffff' },
-          fg: { light: 600, dark: 500 },
-          subtle: { light: 100, dark: 900 },
-          muted: { light: 200, dark: 800 },
-          emphasized: { light: 300, dark: 700 },
-          solid: { light: 500, dark: 600 },
-          focusRing: { light: 400, dark: 400 },
-        }),
-        neutral: generateSemanticPalette('mauve', {
-          contrast: { light: '#ffffff', dark: '#000000' },
-          fg: { light: 800, dark: 200 },
-          subtle: { light: 100, dark: 900 },
-          muted: { light: 200, dark: 800 },
-          emphasized: { light: 300, dark: 700 },
-          solid: { light: 900, dark: 100 },
-          focusRing: { light: 400, dark: 400 },
-        }),
-        bg: {
-          DEFAULT: { value: { _light: '#FBFBFD', _dark: '#09090b' } },
-        },
-        text: {
-          fg: { value: { _light: '{colors.mauve.950}', _dark: '{colors.mauve.50}' } },
-          DEFAULT: { value: { _light: '{colors.text.fg}', _dark: '{colors.text.fg}' } },
-          default: { value: { _light: '{colors.text.fg}', _dark: '{colors.text.fg}' } },
-          muted: { value: { _light: '{colors.mauve.500}', _dark: '{colors.mauve.400}' } },
-          subtle: { value: { _light: '{colors.mauve.400}', _dark: '{colors.mauve.500}' } },
-          inverted: { value: { _light: '{colors.mauve.50}', _dark: '#000000' } },
-          accent: { value: { _light: '{colors.accent.fg}', _dark: '{colors.accent.fg}' } },
-        },
-      },
-    },
+    breakpoints: breakpoints,
+    recipes: recipes,
+    tokens: tokens,
+    semanticTokens: semanticTokens,
   },
 });
 
