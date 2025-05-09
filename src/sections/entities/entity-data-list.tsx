@@ -7,6 +7,9 @@ import {
   DataList,
   Badge,
   DataListItemValue,
+  Clipboard,
+  IconButton,
+  Flex,
 } from '@chakra-ui/react';
 
 export function EntityDataList() {
@@ -46,32 +49,50 @@ export function EntityDataList() {
           <GridItem>
             <Card.Root>
               <Card.Body>
-                <DataList.Root>
-                  <DataList.Item>
-                    <DataList.ItemLabel>Entity Ref ID</DataList.ItemLabel>
-                    <DataList.ItemValue>
-                      <Text textStyle="lg" fontWeight="semibold">
-                        884213655278
-                      </Text>
-                    </DataList.ItemValue>
-                  </DataList.Item>
-                </DataList.Root>
+                <Flex justifyContent="space-between" alignItems="center">
+                  <DataList.Root>
+                    <DataList.Item>
+                      <DataList.ItemLabel>Entity Ref ID</DataList.ItemLabel>
+                      <DataList.ItemValue>
+                        <Text textStyle="lg" fontWeight="semibold">
+                          884213655278
+                        </Text>
+                      </DataList.ItemValue>
+                    </DataList.Item>
+                  </DataList.Root>
+                  <Clipboard.Root value="884213655278">
+                    <Clipboard.Trigger asChild>
+                      <IconButton variant="ghost" size="xs">
+                        <Clipboard.Indicator />
+                      </IconButton>
+                    </Clipboard.Trigger>
+                  </Clipboard.Root>
+                </Flex>
               </Card.Body>
             </Card.Root>
           </GridItem>
           <GridItem>
             <Card.Root>
               <Card.Body>
-                <DataList.Root>
-                  <DataList.Item>
-                    <DataList.ItemLabel>Peoplesoft ID</DataList.ItemLabel>
-                    <DataList.ItemValue>
-                      <Text textStyle="lg" fontWeight="semibold">
-                        240213500236
-                      </Text>
-                    </DataList.ItemValue>
-                  </DataList.Item>
-                </DataList.Root>
+                <Flex justifyContent="space-between" alignItems="center">
+                  <DataList.Root>
+                    <DataList.Item>
+                      <DataList.ItemLabel>Peoplesoft ID</DataList.ItemLabel>
+                      <DataList.ItemValue>
+                        <Text textStyle="lg" fontWeight="semibold">
+                          240213500236
+                        </Text>
+                      </DataList.ItemValue>
+                    </DataList.Item>
+                  </DataList.Root>
+                  <Clipboard.Root value="240213500236">
+                    <Clipboard.Trigger asChild>
+                      <IconButton variant="ghost" size="xs">
+                        <Clipboard.Indicator />
+                      </IconButton>
+                    </Clipboard.Trigger>
+                  </Clipboard.Root>
+                </Flex>
               </Card.Body>
             </Card.Root>
           </GridItem>

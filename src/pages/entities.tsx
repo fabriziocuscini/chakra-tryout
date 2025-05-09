@@ -90,7 +90,7 @@ export default function Entities() {
               navigateTo="/"
             />
             <CalculatedRisk />
-            <RiskReviewLifecycle />
+            <RiskReviewLifecycle needsReview />
           </Stack>
         </GridItem>
         <GridItem colSpan={{ base: 1, md: 8 }}>

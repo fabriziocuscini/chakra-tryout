@@ -1,4 +1,4 @@
-import { Button, DataList, Heading, Stack, Text } from '@chakra-ui/react';
+import { Button, DataList, Heading, Stack, Text, Wrap } from '@chakra-ui/react';
 
 export default function Overview() {
   const colorPalettes = [
@@ -23,13 +23,7 @@ export default function Overview() {
           <DataList.Item>
             <DataList.ItemLabel>{colorPalette}</DataList.ItemLabel>
             <DataList.ItemValue>
-              <Stack
-                key={colorPalette}
-                direction="row"
-                align="center"
-                gap="{spacing.gutter}"
-                flexWrap="wrap"
-              >
+              <Wrap key={colorPalette}>
                 <Button colorPalette={colorPalette} variant="solid">
                   Solid
                 </Button>
@@ -45,7 +39,7 @@ export default function Overview() {
                 <Button colorPalette={colorPalette} variant="ghost">
                   Ghost
                 </Button>
-              </Stack>
+              </Wrap>
             </DataList.ItemValue>
           </DataList.Item>
         </DataList.Root>
