@@ -1,60 +1,55 @@
-import { Button, Heading, HStack, VStack } from '@chakra-ui/react';
+import { Button, DataList, Heading, Stack, Text } from '@chakra-ui/react';
 
 export default function Overview() {
+  const colorPalettes = [
+    'accent',
+    'neutral',
+    'success',
+    'warning',
+    'danger',
+    'blue',
+    'teal',
+    'pink',
+    'purple',
+    'cyan',
+    'yellow',
+  ];
+
   return (
-    <VStack gap={4} alignItems="flex-start">
-      <Heading as="h1">Overview</Heading>
-      <HStack gap="{spacing.gutter}" flexWrap="wrap">
-        <Button colorPalette="blue" variant="solid">
-          Solid
-        </Button>
-        <Button colorPalette="blue" variant="surface">
-          Surface
-        </Button>
-        <Button colorPalette="blue" variant="subtle">
-          Subtle
-        </Button>
-        <Button colorPalette="blue" variant="outline">
-          Outline
-        </Button>
-        <Button colorPalette="blue" variant="ghost">
-          Ghost
-        </Button>
-      </HStack>
-      <HStack gap="{spacing.gutter}" flexWrap="wrap">
-        <Button colorPalette="accent" variant="solid">
-          Solid
-        </Button>
-        <Button colorPalette="accent" variant="surface">
-          Surface
-        </Button>
-        <Button colorPalette="accent" variant="subtle">
-          Subtle
-        </Button>
-        <Button colorPalette="accent" variant="outline">
-          Outline
-        </Button>
-        <Button colorPalette="accent" variant="ghost">
-          Ghost
-        </Button>
-      </HStack>
-      <HStack gap="{spacing.gutter}" flexWrap="wrap">
-        <Button colorPalette="neutral" variant="solid">
-          Solid
-        </Button>
-        <Button colorPalette="neutral" variant="surface">
-          Surface
-        </Button>
-        <Button colorPalette="neutral" variant="subtle">
-          Subtle
-        </Button>
-        <Button colorPalette="neutral" variant="outline">
-          Outline
-        </Button>
-        <Button colorPalette="neutral" variant="ghost">
-          Ghost
-        </Button>
-      </HStack>
-    </VStack>
+    <Stack gap={4} alignItems="flex-start">
+      <Heading>Buttons</Heading>
+      {colorPalettes.map(colorPalette => (
+        <DataList.Root orientation="horizontal">
+          <DataList.Item>
+            <DataList.ItemLabel>{colorPalette}</DataList.ItemLabel>
+            <DataList.ItemValue>
+              <Stack
+                key={colorPalette}
+                direction="row"
+                align="center"
+                gap="{spacing.gutter}"
+                flexWrap="wrap"
+              >
+                <Button colorPalette={colorPalette} variant="solid">
+                  Solid
+                </Button>
+                <Button colorPalette={colorPalette} variant="surface">
+                  Surface
+                </Button>
+                <Button colorPalette={colorPalette} variant="subtle">
+                  Subtle
+                </Button>
+                <Button colorPalette={colorPalette} variant="outline">
+                  Outline
+                </Button>
+                <Button colorPalette={colorPalette} variant="ghost">
+                  Ghost
+                </Button>
+              </Stack>
+            </DataList.ItemValue>
+          </DataList.Item>
+        </DataList.Root>
+      ))}
+    </Stack>
   );
 }

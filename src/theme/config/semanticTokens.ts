@@ -32,15 +32,6 @@ const greenSemanticPalette = generateSemanticPalette('green', {
 
 export const semanticTokens = {
   colors: {
-    blue: generateSemanticPalette('blue', {
-      contrast: { light: '#ffffff', dark: '#ffffff' },
-      fg: { light: 700, dark: 300 },
-      subtle: { light: 100, dark: 900 },
-      muted: { light: 200, dark: 800 },
-      emphasized: { light: 300, dark: 700 },
-      solid: { light: 500, dark: 600 },
-      focusRing: { light: 400, dark: 400 },
-    }),
     accent: generateSemanticPalette('magenta', {
       contrast: { light: '#ffffff', dark: '#ffffff' },
       fg: { light: 600, dark: 500 },
@@ -59,6 +50,15 @@ export const semanticTokens = {
       solid: { light: 900, dark: 100 },
       focusRing: { light: 400, dark: 400 },
     }),
+    blue: generateSemanticPalette('blue', {
+      contrast: { light: '#ffffff', dark: '#ffffff' },
+      fg: { light: 700, dark: 300 },
+      subtle: { light: 100, dark: 900 },
+      muted: { light: 200, dark: 800 },
+      emphasized: { light: 300, dark: 700 },
+      solid: { light: 500, dark: 600 },
+      focusRing: { light: 400, dark: 400 },
+    }),
     green: greenSemanticPalette,
     success: greenSemanticPalette,
     positive: greenSemanticPalette,
@@ -67,6 +67,7 @@ export const semanticTokens = {
     red: redSemanticPalette,
     danger: redSemanticPalette,
     error: redSemanticPalette,
+    negative: redSemanticPalette,
     bg: {
       DEFAULT: { value: { _light: '#FBFBFD', _dark: '#09090b' } },
     },
