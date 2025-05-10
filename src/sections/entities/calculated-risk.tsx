@@ -18,7 +18,7 @@ export function CalculatedRisk() {
   return (
     <Card.Root>
       <Collapsible.Root open={open}>
-        <Card.Header pb={!open ? '{6}' : 0}>
+        <Card.Header pb={6}>
           <Flex justifyContent="space-between" alignItems="center">
             <Heading size="lg">Calculated risk</Heading>
             <Group>
@@ -33,7 +33,7 @@ export function CalculatedRisk() {
           </Flex>
         </Card.Header>
         <Collapsible.Content>
-          <Card.Body>
+          <Card.Body pt={0}>
             <Stack gap="{spacing.gutter.lg}">
               <RiskRatingIndicator rating="low" category="Entity risk" score={3.4} />
               <RiskRatingIndicator rating="low" category="Geographic risk" score={2.5} />
