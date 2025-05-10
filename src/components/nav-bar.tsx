@@ -87,18 +87,17 @@ export default function NavBar({
           <Link to="/">
             <HStack align="center" gap={4}>
               <Image src={logoUrl} alt="Logo" h="40px" />
-              <Text fontSize="lg" fontWeight="bold">
+              <Text fontSize="lg" fontWeight="bold" textWrap="nowrap">
                 {appName}
               </Text>
             </HStack>
           </Link>
         </Flex>
-
-        <Separator orientation="vertical" mx={4} />
       </Flex>
 
       {/* Middle: Navigation Menu */}
       <Box flex="1" display={{ base: 'none', md: 'flex' }}>
+        <Separator orientation="vertical" mx={4} />
         <NavMenu items={navItems} />
       </Box>
 
@@ -106,7 +105,11 @@ export default function NavBar({
       <HStack gap={4}>
         {/* Search Bar */}
         {showSearchBar && (
-          <InputGroup startElement={<MagnifyingGlass />} display={{ base: 'none', lg: 'flex' }}>
+          <InputGroup
+            startElement={<MagnifyingGlass />}
+            display={{ base: 'none', md: 'flex' }}
+            minWidth={{ md: 160, lg: 320 }}
+          >
             <Input placeholder="Search..." variant="subtle" />
           </InputGroup>
         )}
