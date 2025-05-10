@@ -5,7 +5,6 @@ import {
   Grid,
   GridItem,
   DataList,
-  Badge,
   DataListItemValue,
   Clipboard,
   IconButton,
