@@ -1,4 +1,4 @@
-import { Button, DataList, Heading, Stack, Text, Wrap } from '@chakra-ui/react';
+import { Button, DataList, Heading, Stack, Wrap } from '@chakra-ui/react';
 
 export default function Overview() {
   const colorPalettes = [

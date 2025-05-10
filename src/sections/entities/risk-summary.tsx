@@ -10,7 +10,6 @@ import {
   Heading,
   Link,
   Separator,
-  Stack,
 } from '@chakra-ui/react';
 import { RiskRatingSummary } from '@components';
 import { ArrowRight } from '@phosphor-icons/react';

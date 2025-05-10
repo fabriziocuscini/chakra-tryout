@@ -1,4 +1,4 @@
-import { createSystem, defaultConfig, defineConfig, defineRecipe } from '@chakra-ui/react';
+import { createSystem, defaultConfig, defineConfig } from '@chakra-ui/react';
 import { breakpoints, tokens, semanticTokens, recipes } from './config';
 
 const config = defineConfig({
