@@ -11,7 +11,7 @@ import {
   IconButton,
   Flex,
 } from '@chakra-ui/react';
-
+import { RiskRatingBadge } from '@components';
 export function EntityDataList() {
   return (
     <>
@@ -34,7 +34,7 @@ export function EntityDataList() {
               <DataList.Item>
                 <DataList.ItemLabel>Risk rating</DataList.ItemLabel>
                 <DataListItemValue>
-                  <Badge colorPalette="orange">Medium</Badge>
+                  <RiskRatingBadge rating="medium" />
                 </DataListItemValue>
               </DataList.Item>
             </DataList.Root>
@@ -119,9 +119,7 @@ export function EntityDataList() {
                   <DataList.Item>
                     <DataList.ItemLabel>Risk rating</DataList.ItemLabel>
                     <DataList.ItemValue>
-                      <Badge colorPalette="orange" size="lg">
-                        Medium
-                      </Badge>
+                      <RiskRatingBadge rating="medium" size="lg" />
                     </DataList.ItemValue>
                   </DataList.Item>
                 </DataList.Root>

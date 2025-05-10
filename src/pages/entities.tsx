@@ -20,6 +20,7 @@ import {
   RiskReviewLifecycle,
   EntityHeader,
   EntityDataList,
+  RiskCategories,
 } from '@sections/entities';
 
 export default function Entities() {
@@ -94,7 +95,10 @@ export default function Entities() {
           </Stack>
         </GridItem>
         <GridItem colSpan={{ base: 1, md: 8 }}>
-          <RequestDetails />
+          <Stack gap="{spacing.gutter}">
+            <RequestDetails />
+            <RiskCategories />
+          </Stack>
         </GridItem>
       </Grid>
     </VStack>

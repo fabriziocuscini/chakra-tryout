@@ -4,3 +4,4 @@ export { CalculatedRisk } from './calculated-risk';
 export { RiskReviewLifecycle } from './risk-review-lifecycle';
 export { EntityHeader } from './entity-header';
 export { EntityDataList } from './entity-data-list';
+export { RiskCategories } from './risk-categories';
