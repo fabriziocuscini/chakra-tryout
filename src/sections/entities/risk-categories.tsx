@@ -1,6 +1,36 @@
-import { Card, Separator } from '@chakra-ui/react';
-import { RiskCategoryDetails } from './risk-category-details';
-export function RiskCategories() {
+import {
+  Card,
+  Group,
+  Collapsible,
+  Flex,
+  Heading,
+  Separator,
+  useDisclosure,
+  IconButton,
+  Table,
+  Text,
+} from '@chakra-ui/react';
+import { RiskRatingBadge } from '@components';
+import { CaretDown, CaretUp } from '@phosphor-icons/react';
+
+interface RiskItem {
+  id: number;
+  factor: string;
+  description: string;
+  score: number;
+}
+
+interface RiskCategory {
+  name: string;
+  calculatedRisk: number;
+  items: RiskItem[];
+}
+
+interface RiskCategoriesProps {
+  categories: RiskCategory[];
+}
+
+export function RiskCategories({ categories }: RiskCategoriesProps) {
   return (
     <Card.Root>
       {categories.map((category, index) => (
@@ -17,104 +47,56 @@ export function RiskCategories() {
   );
 }
 
-const categories = [
-  {
-    name: 'Entity risk',
-    calculatedRisk: 3.25,
-    items: [
-      { id: 1, factor: 'Entity type', description: 'Limited Company', score: 2 },
-      { id: 2, factor: 'Entity ownership', description: 'Privately owned', score: 6 },
-      {
-        id: 3,
-        factor: 'Oversight',
-        description: 'No regulatory/exchange oversight',
-        score: 5,
-      },
-      { id: 4, factor: 'Transparency', description: 'Transparent structure', score: 0 },
-    ],
-  },
-  {
-    name: 'Geographic information',
-    calculatedRisk: 2.5,
-    items: [
-      {
-        id: 1,
-        factor: 'Jurisdiction of establishment',
-        description: 'Australia',
-        score: 2.5,
-      },
-      {
-        id: 2,
-        factor: 'Domiciliation',
-        description: 'Australia',
-        score: 2.5,
-      },
-      {
-        id: 3,
-        factor: 'UBO Jurisdictions',
-        description: 'n/a',
-        score: -1,
-      },
-      {
-        id: 4,
-        factor: 'Controller Jurisdictions',
-        description: 'Australia',
-        score: 2.5,
-      },
-    ],
-  },
-  {
-    name: 'Nature and purpose of relationship',
-    calculatedRisk: 8.33,
-    items: [
-      {
-        id: 1,
-        factor: 'Relationship type',
-        description: 'Client',
-        score: 10,
-      },
-      {
-        id: 2,
-        factor: 'Distribution channel',
-        description: 'Voice, Electronic (incl. Instant Messenger)',
-        score: 10,
-      },
-      {
-        id: 3,
-        factor: 'Existing relationship',
-        description: 'Relationship under three years',
-        score: 5,
-      },
-    ],
-  },
-  {
-    name: 'Products and services',
-    calculatedRisk: 5,
-    items: [
-      {
-        id: 1,
-        factor: 'Physical/Financial',
-        description: 'Financial',
-        score: 5,
-      },
-      {
-        id: 2,
-        factor: 'Products',
-        description: 'Energy - Power',
-        score: 5,
-      },
-      {
-        id: 3,
-        factor: 'Services',
-        description: 'Clearing, Execution',
-        score: 5,
-      },
-      {
-        id: 4,
-        factor: 'Currencies',
-        description: 'AUD (Australian Dollar)',
-        score: -1,
-      },
-    ],
-  },
-];
+function RiskCategoryDetails({ name, calculatedRisk, items }: RiskCategory) {
+  const { open, onToggle } = useDisclosure({ defaultOpen: true });
+  return (
+    <Collapsible.Root open={open}>
+      <Card.Header pb={6}>
+        <Flex justifyContent="space-between" alignItems="center">
+          <Heading size="lg">{name}</Heading>
+          <Group>
+            <Text fontSize="sm">{calculatedRisk}</Text>
+            <RiskRatingBadge score={calculatedRisk} />
+            <Collapsible.Trigger>
+              <IconButton variant="ghost" size="xs" onClick={onToggle}>
+                {open ? <CaretUp /> : <CaretDown />}
+              </IconButton>
+            </Collapsible.Trigger>
+          </Group>
+        </Flex>
+      </Card.Header>
+      <Collapsible.Content>
+        <Card.Body pt={0.5}>
+          <Table.Root variant="outline">
+            <Table.Header>
+              <Table.Row>
+                <Table.ColumnHeader width="34%">Factor</Table.ColumnHeader>
+                <Table.ColumnHeader width="50%">Description</Table.ColumnHeader>
+                <Table.ColumnHeader width="8%" textAlign="end">
+                  Score
+                </Table.ColumnHeader>
+                <Table.ColumnHeader width="8%" textAlign="end">
+                  Rating
+                </Table.ColumnHeader>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              {items.map(item => (
+                <Table.Row key={item.id}>
+                  <Table.Cell>{item.factor}</Table.Cell>
+                  <Table.Cell>{item.description}</Table.Cell>
+                  <Table.Cell textAlign="end">
+                    {item.score === -1 ? <Text color="text.subtle">n/a</Text> : item.score}
+                  </Table.Cell>
+                  <Table.Cell textAlign="end">
+                    <RiskRatingBadge score={item.score} />
+                  </Table.Cell>
+                </Table.Row>
+              ))}
+            </Table.Body>
+          </Table.Root>
+        </Card.Body>
+      </Collapsible.Content>
+    </Collapsible.Root>
+  );
+}

@@ -11,8 +11,27 @@ import {
 } from '@chakra-ui/react';
 import { CaretUp, CaretDown } from '@phosphor-icons/react';
 import { RiskRatingBadge, RiskRatingIndicator } from '@components';
+import { convertScoreToRating } from '@utils';
 
-export function CalculatedRisk() {
+interface RiskCategory {
+  name: string;
+  calculatedRisk: number;
+  items: RiskItem[];
+}
+
+interface RiskItem {
+  id: number;
+  factor: string;
+  description: string;
+  score: number;
+}
+
+interface CalculatedRiskProps {
+  score: number;
+  riskCategories: RiskCategory[];
+}
+
+export function CalculatedRisk({ score, riskCategories }: CalculatedRiskProps) {
   const { open, onToggle } = useDisclosure({ defaultOpen: true });
   return (
     <Card.Root>
@@ -21,8 +40,8 @@ export function CalculatedRisk() {
           <Flex justifyContent="space-between" alignItems="center">
             <Heading size="lg">Calculated risk</Heading>
             <Group>
-              <Text fontSize="sm">4.77</Text>
-              <RiskRatingBadge score={4.77} />
+              <Text fontSize="sm">{score}</Text>
+              <RiskRatingBadge score={score} />
               <Collapsible.Trigger>
                 <IconButton variant="ghost" size="xs" onClick={onToggle}>
                   {open ? <CaretUp /> : <CaretDown />}
@@ -34,10 +53,14 @@ export function CalculatedRisk() {
         <Collapsible.Content>
           <Card.Body pt={0}>
             <Stack gap="{spacing.gutter.lg}">
-              <RiskRatingIndicator rating="low" category="Entity risk" score={3.25} />
-              <RiskRatingIndicator rating="low" category="Geographic risk" score={2.5} />
-              <RiskRatingIndicator rating="high" category="Relationship risk" score={8.33} />
-              <RiskRatingIndicator rating="medium" category="Products and services" score={5} />
+              {riskCategories.map(category => (
+                <RiskRatingIndicator
+                  key={category.name}
+                  rating={convertScoreToRating(category.calculatedRisk)}
+                  category={category.name}
+                  score={category.calculatedRisk}
+                />
+              ))}
             </Stack>
           </Card.Body>
         </Collapsible.Content>

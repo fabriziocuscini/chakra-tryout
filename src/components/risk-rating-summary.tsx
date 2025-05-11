@@ -3,11 +3,12 @@ import { ClockCounterClockwise } from '@phosphor-icons/react';
 import { RiskRatingIndicator } from '@components';
 import { Tooltip } from '@components/ui/tooltip';
 import { Rating } from '@types';
-
+import { formatDistanceToNow } from 'date-fns';
+import { formatDate } from '@utils';
 // Props interface for the component
 interface RiskRatingSummaryProps {
   rating: Rating;
-  timeAgo?: string;
+  lastUpdated?: string;
 }
 
 // Define a comprehensive structure for each rating
@@ -20,7 +21,10 @@ interface RatingSummaryConfig {
  * RiskRatingSummary displays a prominent risk level with a visual indicator
  * and a badge showing when the risk was set
  */
-export function RiskRatingSummary({ rating, timeAgo }: RiskRatingSummaryProps) {
+export function RiskRatingSummary({ rating, lastUpdated }: RiskRatingSummaryProps) {
+  const elapsed = lastUpdated
+    ? formatDistanceToNow(new Date(lastUpdated), { addSuffix: true })
+    : '';
   // Create a single record with all rating information
   const ratingConfigs: Record<Rating, RatingSummaryConfig> = {
     low: { label: 'Low', color: 'green.solid' },
@@ -46,10 +50,10 @@ export function RiskRatingSummary({ rating, timeAgo }: RiskRatingSummaryProps) {
           {config.label}
         </Heading>
 
-        {timeAgo && (
-          <Tooltip content={`The risk score was updated ${timeAgo}`}>
+        {lastUpdated && (
+          <Tooltip content={`The risk score was updated on ${formatDate(lastUpdated)}`}>
             <Badge size="lg" rounded="full">
-              <ClockCounterClockwise weight="fill" /> {timeAgo}
+              <ClockCounterClockwise weight="fill" /> {elapsed}
             </Badge>
           </Tooltip>
         )}

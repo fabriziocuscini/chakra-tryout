@@ -1,13 +1,20 @@
 import { Box, Flex, Text, VStack } from '@chakra-ui/react';
 import { Tooltip } from '@components/ui/tooltip';
 import { Rating } from '@types';
-
-// Props interface for the component
-interface RiskRatingIndicatorProps {
-  rating: Rating;
+import { convertScoreToRating } from '@utils';
+interface WithScore {
+  score: number;
+  rating?: Rating;
   category?: string;
-  score?: number;
 }
+
+interface WithRating {
+  rating: Rating;
+  score?: number;
+  category?: string;
+}
+
+type RiskRatingIndicatorProps = WithScore | WithRating;
 
 // Define a more comprehensive structure for each rating
 interface RatingConfig {
@@ -29,7 +36,7 @@ export function RiskRatingIndicator({ rating, category, score }: RiskRatingIndic
   };
 
   // Get the configuration for the current rating
-  const config = ratingConfigs[rating];
+  const config = rating ? ratingConfigs[rating] : ratingConfigs[convertScoreToRating(score)];
 
   // Helper function to determine if a bar is active
   const isActive = (position: number) => config.position === position;

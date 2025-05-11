@@ -1,3 +1,4 @@
+import { Rating } from '@/types';
 import {
   Box,
   Text,
@@ -11,7 +12,15 @@ import {
   Flex,
 } from '@chakra-ui/react';
 import { RiskRatingBadge } from '@components';
-export function EntityDataList() {
+
+interface EntityDataListProps {
+  entityRef: string;
+  psid: string;
+  status: string;
+  riskRating: string;
+}
+
+export function EntityDataList({ entityRef, psid, status, riskRating }: EntityDataListProps) {
   return (
     <>
       <Box display={{ base: 'block', sm: 'none' }}>
@@ -20,20 +29,20 @@ export function EntityDataList() {
             <DataList.Root orientation="horizontal">
               <DataList.Item>
                 <DataList.ItemLabel>Entity Ref ID</DataList.ItemLabel>
-                <DataList.ItemValue>884213655278</DataList.ItemValue>
+                <DataList.ItemValue>{entityRef}</DataList.ItemValue>
               </DataList.Item>
               <DataList.Item>
                 <DataList.ItemLabel>Peoplesoft ID</DataList.ItemLabel>
-                <DataListItemValue>240213500236</DataListItemValue>
+                <DataListItemValue>{psid}</DataListItemValue>
               </DataList.Item>
               <DataList.Item>
                 <DataList.ItemLabel>Status</DataList.ItemLabel>
-                <DataListItemValue>Closed</DataListItemValue>
+                <DataListItemValue>{status}</DataListItemValue>
               </DataList.Item>
               <DataList.Item>
                 <DataList.ItemLabel>Risk rating</DataList.ItemLabel>
                 <DataListItemValue>
-                  <RiskRatingBadge rating="medium" />
+                  <RiskRatingBadge rating={riskRating as Rating} />
                 </DataListItemValue>
               </DataList.Item>
             </DataList.Root>
@@ -54,12 +63,12 @@ export function EntityDataList() {
                       <DataList.ItemLabel>Entity Ref ID</DataList.ItemLabel>
                       <DataList.ItemValue>
                         <Text textStyle="lg" fontWeight="semibold">
-                          884213655278
+                          {entityRef}
                         </Text>
                       </DataList.ItemValue>
                     </DataList.Item>
                   </DataList.Root>
-                  <Clipboard.Root value="884213655278">
+                  <Clipboard.Root value={entityRef}>
                     <Clipboard.Trigger asChild>
                       <IconButton variant="ghost" size="xs">
                         <Clipboard.Indicator />
@@ -79,12 +88,12 @@ export function EntityDataList() {
                       <DataList.ItemLabel>Peoplesoft ID</DataList.ItemLabel>
                       <DataList.ItemValue>
                         <Text textStyle="lg" fontWeight="semibold">
-                          240213500236
+                          {psid}
                         </Text>
                       </DataList.ItemValue>
                     </DataList.Item>
                   </DataList.Root>
-                  <Clipboard.Root value="240213500236">
+                  <Clipboard.Root value={psid}>
                     <Clipboard.Trigger asChild>
                       <IconButton variant="ghost" size="xs">
                         <Clipboard.Indicator />
@@ -103,7 +112,7 @@ export function EntityDataList() {
                     <DataList.ItemLabel>Status</DataList.ItemLabel>
                     <DataList.ItemValue>
                       <Text textStyle="lg" fontWeight="semibold">
-                        Closed
+                        {status}
                       </Text>
                     </DataList.ItemValue>
                   </DataList.Item>
@@ -118,7 +127,7 @@ export function EntityDataList() {
                   <DataList.Item>
                     <DataList.ItemLabel>Risk rating</DataList.ItemLabel>
                     <DataList.ItemValue>
-                      <RiskRatingBadge rating="medium" size="lg" />
+                      <RiskRatingBadge rating={riskRating as Rating} size="lg" />
                     </DataList.ItemValue>
                   </DataList.Item>
                 </DataList.Root>

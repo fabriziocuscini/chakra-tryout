@@ -1,5 +1,6 @@
 import { Badge, BadgeProps } from '@chakra-ui/react';
 import { Rating } from '@types';
+import { convertScoreToRating } from '@utils';
 
 // Base props without rating or score
 type BaseRiskRatingBadgeProps = Omit<BadgeProps, 'children'>;
@@ -50,13 +51,7 @@ export function RiskRatingBadge({ rating, score, ...props }: RiskRatingBadgeProp
   let derivedRating: Rating = rating || 'medium';
 
   if (score !== undefined) {
-    if (score >= 0 && score < 4) {
-      derivedRating = 'low';
-    } else if (score >= 4 && score < 8) {
-      derivedRating = 'medium';
-    } else if (score >= 8 && score <= 10) {
-      derivedRating = 'high';
-    }
+    derivedRating = convertScoreToRating(score);
   }
 
   // Get the configuration for the current rating
