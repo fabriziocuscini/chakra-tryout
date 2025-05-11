@@ -1,4 +1,4 @@
-import { generatePalette } from '@/theme/utils';
+import { generatePalette } from '../utils';
 
 export const tokens = {
   colors: {

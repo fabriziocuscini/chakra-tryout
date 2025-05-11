@@ -20,7 +20,9 @@
       "@sections": ["./src/sections"],
       "@sections/*": ["./src/sections/*"],
       "@types": ["./src/types"],
-      "@types/*": ["./src/types/*"]
+      "@types/*": ["./src/types/*"],
+      "@utils": ["./src/utils"],
+      "@utils/*": ["./src/utils/*"]
     },
 
     /* Bundler mode */

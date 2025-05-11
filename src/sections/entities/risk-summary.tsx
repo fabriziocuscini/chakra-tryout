@@ -1,7 +1,6 @@
 import { Rating } from '@types';
 import {
   Alert,
-  Badge,
   Card,
   DataList,
   DataListItem,
@@ -11,24 +10,27 @@ import {
   Link,
   Separator,
 } from '@chakra-ui/react';
-import { RiskRatingSummary } from '@components';
+import { RiskRatingSummary, RiskRatingBadge } from '@components';
 import { ArrowRight } from '@phosphor-icons/react';
 import { Link as RouterLink } from 'react-router-dom';
+import { convertScoreToRating } from '@utils';
 
 interface RiskSummaryProps {
-  rating: Rating;
+  score: number;
   timeAgo?: string;
   navigateTo?: string;
   FCCReview?: boolean;
   riskOverride?: Rating;
+  overrideDescription?: string;
 }
 
 export function RiskSummary({
-  rating,
+  score,
   timeAgo,
   navigateTo,
   FCCReview = false,
   riskOverride,
+  overrideDescription = '',
 }: RiskSummaryProps) {
   return (
     <Card.Root>
@@ -36,7 +38,7 @@ export function RiskSummary({
         <Heading size="lg">Risk summary</Heading>
       </Card.Header>
       <Card.Body>
-        <RiskRatingSummary rating={rating} timeAgo={timeAgo} />
+        <RiskRatingSummary rating={convertScoreToRating(score)} timeAgo={timeAgo} />
       </Card.Body>
       {FCCReview && (
         <Card.Body pt={0}>
@@ -53,7 +55,7 @@ export function RiskSummary({
               <DataListItem>
                 <DataListItemLabel>Risk rating override</DataListItemLabel>
                 <DataListItemValue justifyContent="flex-end">
-                  <Badge colorPalette="orange">Medium</Badge>
+                  <RiskRatingBadge rating={riskOverride} />
                 </DataListItemValue>
               </DataListItem>
             </DataList.Root>
@@ -63,13 +65,7 @@ export function RiskSummary({
             <DataList.Root orientation="vertical">
               <DataListItem>
                 <DataListItemLabel>Manual override rationale</DataListItemLabel>
-                <DataListItemValue>
-                  We have some reservations based on a few factors that warrant a more cautious
-                  approach at this stage. The entity is privately owned, which can present a
-                  slightly higher transparency and governance risk compared to public or regulated
-                  entities. Additionally, there is no regulatory or exchange oversight, which
-                  further contributes to the potential risk profile.
-                </DataListItemValue>
+                <DataListItemValue>{overrideDescription}</DataListItemValue>
               </DataListItem>
             </DataList.Root>
           </Card.Body>

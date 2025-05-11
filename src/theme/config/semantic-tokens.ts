@@ -1,4 +1,4 @@
-import { generateSemanticPalette } from '@/theme/utils';
+import { generateSemanticPalette } from '../utils';
 
 const redSemanticPalette = generateSemanticPalette('red', {
   contrast: { light: '#ffffff', dark: '#ffffff' },

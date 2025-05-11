@@ -22,8 +22,13 @@ import {
   EntityDataList,
   RiskCategories,
 } from '@sections/entities';
+import entities from '@/data/entities.json';
+import { convertScoreToRating } from '@utils';
+import { DueDiligenceLevel, Rating } from '@/types';
 
 export default function Entities() {
+  const entity = entities.entities.find(entity => entity.id === '1');
+
   return (
     <VStack alignItems="stretch" gap="{spacing.gutter}">
       {/* 1/4: Back link */}
@@ -34,9 +39,21 @@ export default function Entities() {
         </RouterLink>
       </Link>
       {/* 2/4: Entity header + workflow actions */}
-      <EntityHeader />
-      {/* 3/4: Info data panels */}
-      <EntityDataList />
+      {entity && (
+        <>
+          <EntityHeader name={entity.name} createdAt={entity.createdAt} />
+          <EntityDataList
+            entityRef={entity.entityRef}
+            psid={entity.PSID}
+            status={entity.status}
+            riskRating={
+              entity.risk.overridden
+                ? (entity.risk.override.rating as Rating)
+                : convertScoreToRating(entity.risk.score)
+            }
+          />
+        </>
+      )}
       {/* 4/4: Tabs for sub-navigation, Select dropdown on small screens */}
       <Box display={{ base: 'block', md: 'none' }}>
         <Select.Root collection={sections} defaultValue={[sections.items[0].value]} size="lg">
@@ -81,23 +98,38 @@ export default function Entities() {
       >
         <GridItem colSpan={{ base: 1, md: 4 }}>
           <Stack gap="{spacing.gutter}">
-            {/* <RiskSummary rating="low" /> */}
-            {/* <RiskSummary rating="high" timeAgo="3 weeks ago" navigateTo="/" /> */}
-            <RiskSummary
-              rating="medium"
-              timeAgo="3 weeks ago"
-              riskOverride="low"
-              FCCReview
-              navigateTo="/"
-            />
-            <CalculatedRisk />
-            <RiskReviewLifecycle needsReview />
+            {entity && (
+              <RiskSummary
+                score={entity.risk.score}
+                timeAgo="3 weeks ago"
+                riskOverride={
+                  entity.risk.overridden ? (entity.risk.override.rating as Rating) : undefined
+                }
+                overrideDescription={
+                  entity.risk.overridden ? entity.risk.override.description : undefined
+                }
+                navigateTo="/"
+              />
+            )}
+            {entity && (
+              <CalculatedRisk
+                score={entity.risk.score}
+                riskCategories={entity.risk.riskCategories}
+              />
+            )}
+            {entity && (
+              <RiskReviewLifecycle
+                needsReview={entity?.risk.FCCAdvisoryRequired}
+                dueDiligenceLevel={entity?.risk.dueDiligenceLevel as DueDiligenceLevel}
+                lastReviewDate={entity?.risk.lastUpdated}
+              />
+            )}
           </Stack>
         </GridItem>
         <GridItem colSpan={{ base: 1, md: 8 }}>
           <Stack gap="{spacing.gutter}">
-            <RequestDetails />
-            <RiskCategories />
+            {entity && <RequestDetails items={entity.requestDetails} />}
+            {entity && <RiskCategories categories={entity.risk.riskCategories} />}
           </Stack>
         </GridItem>
       </Grid>

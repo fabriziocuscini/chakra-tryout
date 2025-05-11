@@ -2,14 +2,20 @@ import { Heading, Icon, VStack, Text, Separator, Button, HStack, Stack } from '@
 import { Check, ClockCounterClockwise } from '@phosphor-icons/react';
 import { X } from '@phosphor-icons/react';
 
-export function EntityHeader() {
+interface EntityHeaderProps {
+  name: string;
+  createdAt: string;
+  updatedAt?: string;
+}
+
+export function EntityHeader({ name, createdAt }: EntityHeaderProps) {
   return (
     <Stack direction={{ base: 'column', md: 'row' }} gap={4} alignItems="flex-start">
       <VStack flex={1} alignItems="flex-start">
         <Heading as="h1" textStyle="4xl">
-          The Coca Cola Company
+          {name}
         </Heading>
-        <Text color="text.muted">First onboarded on 12 Dec 2023</Text>
+        <Text color="text.muted">First onboarded on {createdAt}</Text>
       </VStack>
       <HStack gap="{spacing.gutter.sm}" flexWrap="wrap">
         <Button variant={{ base: 'subtle', md: 'ghost' }}>

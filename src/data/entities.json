@@ -14,17 +14,17 @@
       "PSID": "240213500236",
       "status": "Onboarded",
       "risk": {
+        "overridden": true,
         "override": {
           "rating": "high",
           "description": "We have some reservations based on a few factors that warrant a more cautious approach at this stage. The entity is privately owned, which can present a slightly higher transparency and governance risk compared to public or regulated entities. Additionally, there is no regulatory or exchange oversight, which further contributes to the potential risk profile."
         },
-        "rating": "medium",
         "score": 4.77,
         "lastUpdated": "28 Feb 2025",
         "FCCAdvisoryRequired": true,
         "dueDiligenceLevel": "standard",
-        "riskCategories": {
-          "Entity risk": {
+        "riskCategories": [
+          {
             "name": "Entity risk",
             "calculatedRisk": 3.25,
             "items": [
@@ -49,7 +49,7 @@
               }
             ]
           },
-          "Geographic information": {
+          {
             "name": "Geographic information",
             "calculatedRisk": 2.5,
             "items": [
@@ -79,7 +79,7 @@
               }
             ]
           },
-          "Nature and purpose of relationship": {
+          {
             "name": "Nature and purpose of relationship",
             "calculatedRisk": 8.33,
             "items": [
@@ -103,7 +103,7 @@
               }
             ]
           },
-          "Products and services": {
+          {
             "name": "Products and services",
             "calculatedRisk": 5,
             "items": [
@@ -133,8 +133,22 @@
               }
             ]
           }
-        }
-      }
+        ]
+      },
+      "requestDetails": [
+        { "label": "Request ID", "value": "10007" },
+        { "label": "Template ID", "value": "10" },
+        { "label": "Primary system", "value": "XTP" },
+        { "label": "Account number", "value": "Y5409" },
+        { "label": "Account name", "value": "Intermoney Valores Sociedad de Valores S.A." },
+        { "label": "Firm", "value": "MFL" },
+        { "label": "Requested by", "value": "ZMayo@marexspectron.com" },
+        { "label": "Requested at", "value": "28 Sep 2023 15:20:01" },
+        { "label": "Amount", "value": "291,200.00" },
+        { "label": "Currency", "value": "EUR" },
+        { "label": "USD equivalent", "value": "311,268.16 (€1 = $1.0568)" },
+        { "label": "SSI", "value": "HSBC - ****** - ******** - ****** - 4021" }
+      ]
     }
   ]
 }

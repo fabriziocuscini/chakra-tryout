@@ -1,11 +1,14 @@
 import {
   Alert,
+  Badge,
   Box,
   Card,
+  Circle,
   DataList,
   DataListItem,
   DataListItemLabel,
   DataListItemValue,
+  Group,
   Heading,
   HStack,
   Progress,
@@ -13,12 +16,25 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react';
+import { DueDiligenceLevel } from '@types';
+
+const dueDiligenceLevelConfig: Record<DueDiligenceLevel, { label: string; color: string }> = {
+  standard: { label: 'Standard', color: 'blue' },
+  enhanced: { label: 'Enhanced', color: 'red' },
+  limited: { label: 'Limited', color: 'green' },
+};
 
 interface RiskReviewLifecycleProps {
   needsReview?: boolean;
+  lastReviewDate?: string;
+  dueDiligenceLevel: DueDiligenceLevel;
 }
 
-export function RiskReviewLifecycle({ needsReview = false }: RiskReviewLifecycleProps) {
+export function RiskReviewLifecycle({
+  needsReview = false,
+  lastReviewDate,
+  dueDiligenceLevel,
+}: RiskReviewLifecycleProps) {
   return (
     <Card.Root>
       <Card.Header>
@@ -60,7 +76,18 @@ export function RiskReviewLifecycle({ needsReview = false }: RiskReviewLifecycle
           <DataList.Root orientation="vertical" pt={2}>
             <DataListItem>
               <DataListItemLabel>Due diligence level</DataListItemLabel>
-              <DataListItemValue>Standard</DataListItemValue>
+              <DataListItemValue>
+                <Group>
+                  <Circle
+                    size={2}
+                    bg={dueDiligenceLevelConfig[dueDiligenceLevel].color + '.emphasized'}
+                  />
+                  <Text>{dueDiligenceLevelConfig[dueDiligenceLevel].label}</Text>
+                  {/* <Badge colorPalette={dueDiligenceLevelConfig[dueDiligenceLevel].color}>
+                    {dueDiligenceLevelConfig[dueDiligenceLevel].label}
+                  </Badge> */}
+                </Group>
+              </DataListItemValue>
             </DataListItem>
           </DataList.Root>
         </Stack>
@@ -71,7 +98,7 @@ export function RiskReviewLifecycle({ needsReview = false }: RiskReviewLifecycle
           <DataList.Root orientation="vertical">
             <DataListItem>
               <DataListItemLabel>Last Review Date</DataListItemLabel>
-              <DataListItemValue>19 Jan 2024</DataListItemValue>
+              <DataListItemValue>{lastReviewDate}</DataListItemValue>
             </DataListItem>
           </DataList.Root>
         </Card.Body>
