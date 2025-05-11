@@ -11,6 +11,7 @@ A modern React application built with Chakra UI, TypeScript, and React Router, f
 - 🔄 **Multiple Layouts** - Flexible layout system with multiple configurations
 - 📱 **Responsive Design** - Works on all device sizes
 - 🌙 **Dark Mode** - Built-in light/dark mode support
+- 🔄 **TanStack Query** - Data fetching and caching with React Query
 
 ## 📦 Installation
 
@@ -55,10 +56,12 @@ src/
 ├── components/         # Shared UI components
 ├── config/             # Application configuration
 ├── data/               # Mocked JSON data
+├── hooks/              # Custom hooks
 ├── layouts/            # Layout components
 ├── pages/              # Page components
 ├── router/             # Route definitions
 ├── sections/           # Page-specific composite components
+├── services/           # API and external service integrations
 ├── theme/              # Theme extension and customisations
 │   └── utils/          # Theme-specific util functions
 ├── types/              # Shared type definitions
@@ -76,6 +79,7 @@ src/
 - [React Router 7](https://reactrouter.com/)
 - [Phosphor Icons](https://phosphoricons.com/)
 - [Framer Motion](https://www.framer.com/motion/)
+- [TanStack Query](https://tanstack.com/query/)
 
 ## 🔍 Architecture
 
