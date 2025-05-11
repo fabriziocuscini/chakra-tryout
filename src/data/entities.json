@@ -3,8 +3,8 @@
     {
       "id": "1",
       "name": "The Coca Cola Company",
-      "createdAt": "12 Dec 2023",
-      "updatedAt": "11 May 2025",
+      "createdAt": "2023-12-12T12:00:00Z",
+      "updatedAt": "2025-05-11T12:00:00Z",
       "description": "The Coca Cola Company is a multinational beverage company that manufactures and sells a wide range of soft drinks, including Coca-Cola, Diet Coke, and Sprite.",
       "website": "https://www.coca-cola.com",
       "industry": "Beverage",
@@ -20,9 +20,9 @@
           "description": "We have some reservations based on a few factors that warrant a more cautious approach at this stage. The entity is privately owned, which can present a slightly higher transparency and governance risk compared to public or regulated entities. Additionally, there is no regulatory or exchange oversight, which further contributes to the potential risk profile."
         },
         "score": 4.77,
-        "lastUpdated": "28 Feb 2025",
+        "lastUpdated": "2025-03-01T12:00:00Z",
+        "dueDiligenceLevel": "enhanced",
         "FCCAdvisoryRequired": true,
-        "dueDiligenceLevel": "standard",
         "riskCategories": [
           {
             "name": "Entity risk",

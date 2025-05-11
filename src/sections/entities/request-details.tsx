@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { createListCollection, Card, DataList, Heading, Separator } from '@chakra-ui/react';
+import { Card, DataList, Heading, Separator } from '@chakra-ui/react';
 
 interface RequestDetail {
   label: string;

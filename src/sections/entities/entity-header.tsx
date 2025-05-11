@@ -1,7 +1,7 @@
 import { Heading, Icon, VStack, Text, Separator, Button, HStack, Stack } from '@chakra-ui/react';
 import { Check, ClockCounterClockwise } from '@phosphor-icons/react';
 import { X } from '@phosphor-icons/react';
-
+import { formatDate } from '@utils';
 interface EntityHeaderProps {
   name: string;
   createdAt: string;
@@ -15,7 +15,7 @@ export function EntityHeader({ name, createdAt }: EntityHeaderProps) {
         <Heading as="h1" textStyle="4xl">
           {name}
         </Heading>
-        <Text color="text.muted">First onboarded on {createdAt}</Text>
+        <Text color="text.muted">First onboarded on {formatDate(createdAt)}</Text>
       </VStack>
       <HStack gap="{spacing.gutter.sm}" flexWrap="wrap">
         <Button variant={{ base: 'subtle', md: 'ghost' }}>

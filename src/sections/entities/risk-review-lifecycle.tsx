@@ -1,6 +1,6 @@
+import { Tooltip } from '@/components/ui/tooltip';
 import {
   Alert,
-  Badge,
   Box,
   Card,
   Circle,
@@ -17,11 +17,16 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { DueDiligenceLevel } from '@types';
+import { formatDate } from '@utils';
+import { addDays, isAfter, differenceInDays, formatDistanceToNow } from 'date-fns';
 
-const dueDiligenceLevelConfig: Record<DueDiligenceLevel, { label: string; color: string }> = {
-  standard: { label: 'Standard', color: 'blue' },
-  enhanced: { label: 'Enhanced', color: 'red' },
-  limited: { label: 'Limited', color: 'green' },
+const dueDiligenceLevelConfig: Record<
+  DueDiligenceLevel,
+  { label: string; color: string; expiry: number }
+> = {
+  standard: { label: 'Standard', color: 'blue', expiry: 180 },
+  enhanced: { label: 'Enhanced', color: 'red', expiry: 60 },
+  limited: { label: 'Limited', color: 'green', expiry: 365 },
 };
 
 interface RiskReviewLifecycleProps {
@@ -31,10 +36,30 @@ interface RiskReviewLifecycleProps {
 }
 
 export function RiskReviewLifecycle({
-  needsReview = false,
   lastReviewDate,
   dueDiligenceLevel,
 }: RiskReviewLifecycleProps) {
+  const nextReviewDate = lastReviewDate
+    ? addDays(
+        new Date(lastReviewDate),
+        dueDiligenceLevelConfig[dueDiligenceLevel].expiry
+      ).toISOString()
+    : undefined;
+
+  const needsReview = nextReviewDate ? isAfter(new Date(), new Date(nextReviewDate)) : false;
+
+  const calculateProgress = (lastReviewDate: string, nextReviewDate: string) => {
+    const totalInterval = differenceInDays(new Date(nextReviewDate), new Date(lastReviewDate));
+    const elapsedInterval = differenceInDays(new Date(), new Date(lastReviewDate));
+    return (elapsedInterval / totalInterval) * 100;
+  };
+
+  const progressValue = needsReview
+    ? 100
+    : lastReviewDate && nextReviewDate
+      ? calculateProgress(lastReviewDate, nextReviewDate)
+      : 0;
+
   return (
     <Card.Root>
       <Card.Header>
@@ -43,33 +68,43 @@ export function RiskReviewLifecycle({
       <Card.Body pb={3}>
         <Stack gap={4}>
           <Box>
-            <Progress.Root
-              value={needsReview ? 100 : 80}
-              colorPalette={needsReview ? 'warning' : 'neutral'}
-              shape="full"
-              size="sm"
-              height={2}
-              variant="subtle"
-              mb={2}
+            <Tooltip
+              content={`Today is ${formatDate(new Date().toISOString())}, about ${Math.ceil(
+                progressValue
+              )}% through the review cycle of ${dueDiligenceLevelConfig[dueDiligenceLevel].expiry} days`}
+              positioning={{ placement: 'top' }}
             >
-              <Progress.Track>
-                <Progress.Range />
-              </Progress.Track>
-            </Progress.Root>
-            <HStack justifyContent="space-between" w="full">
-              <Text fontSize="xs" fontWeight="medium" color="text.muted">
-                Last review
+              <Box>
+                <Progress.Root
+                  value={progressValue}
+                  colorPalette={needsReview ? 'warning' : 'neutral'}
+                  shape="full"
+                  size="sm"
+                  height={2}
+                  variant="subtle"
+                  mb={2}
+                >
+                  <Progress.Track>
+                    <Progress.Range />
+                  </Progress.Track>
+                </Progress.Root>
+              </Box>
+            </Tooltip>
+            <Text fontSize="xs" fontWeight="medium" color="text.muted">
+              <Text as="span">
+                {needsReview ? 'Review was due' : 'Next review'}{' '}
+                {nextReviewDate &&
+                  formatDistanceToNow(new Date(nextReviewDate), { addSuffix: true })}
               </Text>
-              <Text fontSize="xs" fontWeight="medium" color="text.muted">
-                Next review
-              </Text>
-            </HStack>
+            </Text>
           </Box>
 
           {needsReview && (
             <Alert.Root status="warning" mt={2}>
               <Alert.Indicator />
-              <Alert.Title>Periodic review due 24 May 2024</Alert.Title>
+              <Alert.Title>
+                Periodic review due {nextReviewDate && formatDate(nextReviewDate)}
+              </Alert.Title>
             </Alert.Root>
           )}
 
@@ -83,9 +118,6 @@ export function RiskReviewLifecycle({
                     bg={dueDiligenceLevelConfig[dueDiligenceLevel].color + '.emphasized'}
                   />
                   <Text>{dueDiligenceLevelConfig[dueDiligenceLevel].label}</Text>
-                  {/* <Badge colorPalette={dueDiligenceLevelConfig[dueDiligenceLevel].color}>
-                    {dueDiligenceLevelConfig[dueDiligenceLevel].label}
-                  </Badge> */}
                 </Group>
               </DataListItemValue>
             </DataListItem>
@@ -98,7 +130,9 @@ export function RiskReviewLifecycle({
           <DataList.Root orientation="vertical">
             <DataListItem>
               <DataListItemLabel>Last Review Date</DataListItemLabel>
-              <DataListItemValue>{lastReviewDate}</DataListItemValue>
+              <DataListItemValue>
+                {lastReviewDate ? formatDate(lastReviewDate) : 'N/A'}
+              </DataListItemValue>
             </DataListItem>
           </DataList.Root>
         </Card.Body>
@@ -107,7 +141,9 @@ export function RiskReviewLifecycle({
           <DataList.Root orientation="vertical">
             <DataListItem>
               <DataListItemLabel>Next Review Date</DataListItemLabel>
-              <DataListItemValue>24 May 2024</DataListItemValue>
+              <DataListItemValue>
+                {nextReviewDate ? formatDate(nextReviewDate) : 'N/A'}
+              </DataListItemValue>
             </DataListItem>
           </DataList.Root>
         </Card.Body>

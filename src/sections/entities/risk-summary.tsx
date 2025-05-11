@@ -17,7 +17,7 @@ import { convertScoreToRating } from '@utils';
 
 interface RiskSummaryProps {
   score: number;
-  timeAgo?: string;
+  lastUpdated?: string;
   navigateTo?: string;
   FCCReview?: boolean;
   riskOverride?: Rating;
@@ -26,7 +26,7 @@ interface RiskSummaryProps {
 
 export function RiskSummary({
   score,
-  timeAgo,
+  lastUpdated,
   navigateTo,
   FCCReview = false,
   riskOverride,
@@ -38,7 +38,7 @@ export function RiskSummary({
         <Heading size="lg">Risk summary</Heading>
       </Card.Header>
       <Card.Body>
-        <RiskRatingSummary rating={convertScoreToRating(score)} timeAgo={timeAgo} />
+        <RiskRatingSummary rating={convertScoreToRating(score)} lastUpdated={lastUpdated} />
       </Card.Body>
       {FCCReview && (
         <Card.Body pt={0}>

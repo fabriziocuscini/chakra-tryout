@@ -101,7 +101,8 @@ export default function Entities() {
             {entity && (
               <RiskSummary
                 score={entity.risk.score}
-                timeAgo="3 weeks ago"
+                lastUpdated={entity?.risk.lastUpdated}
+                FCCReview={entity?.risk.FCCAdvisoryRequired}
                 riskOverride={
                   entity.risk.overridden ? (entity.risk.override.rating as Rating) : undefined
                 }
