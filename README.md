@@ -16,7 +16,7 @@ A modern React application built with Chakra UI, TypeScript, and React Router, f
 
 ```bash
 # Clone the repository
-git clone https://your-repository-url/chakra-tryout.git
+git clone https://github.com/fabriziocuscini/chakra-tryout.git
 cd chakra-tryout
 
 # Install dependencies
@@ -38,6 +38,9 @@ pnpm build
 # Run linting
 pnpm lint
 
+# Check code formatting
+pnpm format:check
+
 # Format code
 pnpm format
 
@@ -49,29 +52,30 @@ pnpm preview
 
 ```
 src/
-├── components/         # Reusable UI components
-│   ├── navigation.tsx  # Navigation component
-│   └── ...
+├── components/         # Shared UI components
 ├── config/             # Application configuration
-│   ├── navigation.ts   # Navigation configuration
-│   └── ...
+├── data/               # Mocked JSON data
 ├── layouts/            # Layout components
 ├── pages/              # Page components
-├── routes/             # Route definitions
-├── theme/              # Theme extension and customisatios
+├── router/             # Route definitions
+├── sections/           # Page-specific composite components
+├── theme/              # Theme extension and customisations
+│   └── utils/          # Theme-specific util functions
+├── types/              # Shared type definitions
+├── utils/              # Shared util functions
 ├── app.tsx             # Application shell
 └── main.tsx            # Entry point
 ```
 
 ## 🛠️ Tech Stack
 
-- [React 19](https://react.dev/)
-- [Chakra UI 3](https://chakra-ui.com/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [React Router 7](https://reactrouter.com/)
 - [Vite](https://vitejs.dev/)
-- [Framer Motion](https://www.framer.com/motion/)
+- [React 19](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Chakra UI 3](https://chakra-ui.com/)
+- [React Router 7](https://reactrouter.com/)
 - [Phosphor Icons](https://phosphoricons.com/)
+- [Framer Motion](https://www.framer.com/motion/)
 
 ## 🔍 Architecture
 
