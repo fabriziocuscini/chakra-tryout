@@ -10,6 +10,8 @@ import {
   Select,
   createListCollection,
   Link,
+  Spinner,
+  Center,
 } from '@chakra-ui/react';
 import { ArrowLeft } from '@phosphor-icons/react';
 import { Link as RouterLink } from 'react-router-dom';
@@ -22,12 +24,43 @@ import {
   EntityDataList,
   RiskCategories,
 } from '@sections/entities';
-import entities from '@/data/entities.json';
+import { useEntity } from '@hooks';
 import { convertScoreToRating } from '@utils';
 import { DueDiligenceLevel, Rating } from '@/types';
 
 export default function Entities() {
-  const entity = entities.entities.find(entity => entity.id === '1');
+  // Using React Query hook to fetch the entity with ID '1'
+  const { data, isLoading, isError, error } = useEntity('1');
+  const entity = data;
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <Center h="200px">
+        <Spinner size="xl" />
+      </Center>
+    );
+  }
+
+  // Show error state
+  if (isError) {
+    return (
+      <Box p={4} borderWidth={1} borderRadius="md" bg="red.50" color="red.600">
+        <Text fontWeight="bold">Error loading entity!</Text>
+        <Text>{(error as Error)?.message || 'An unknown error occurred'}</Text>
+      </Box>
+    );
+  }
+
+  // Show not found state
+  if (!entity) {
+    return (
+      <Box p={4} borderWidth={1} borderRadius="md" bg="yellow.50" color="yellow.600">
+        <Text fontWeight="bold">Entity not found</Text>
+        <Text>The requested entity could not be found.</Text>
+      </Box>
+    );
+  }
 
   return (
     <VStack alignItems="stretch" gap="{spacing.gutter}">
@@ -39,21 +72,19 @@ export default function Entities() {
         </RouterLink>
       </Link>
       {/* 2/4: Entity header + workflow actions */}
-      {entity && (
-        <>
-          <EntityHeader name={entity.name} createdAt={entity.createdAt} />
-          <EntityDataList
-            entityRef={entity.entityRef}
-            psid={entity.PSID}
-            status={entity.status}
-            riskRating={
-              entity.risk.overridden
-                ? (entity.risk.override.rating as Rating)
-                : convertScoreToRating(entity.risk.score)
-            }
-          />
-        </>
-      )}
+      <>
+        <EntityHeader name={entity.name} createdAt={entity.createdAt} />
+        <EntityDataList
+          entityRef={entity.entityRef}
+          psid={entity.PSID}
+          status={entity.status}
+          riskRating={
+            entity.risk.overridden && entity.risk.override
+              ? (entity.risk.override.rating as Rating)
+              : convertScoreToRating(entity.risk.score)
+          }
+        />
+      </>
       {/* 4/4: Tabs for sub-navigation, Select dropdown on small screens */}
       <Box display={{ base: 'block', md: 'none' }}>
         <Select.Root collection={sections} defaultValue={[sections.items[0].value]} size="lg">
@@ -98,39 +129,34 @@ export default function Entities() {
       >
         <GridItem colSpan={{ base: 1, md: 4 }}>
           <Stack gap="{spacing.gutter}">
-            {entity && (
-              <RiskSummary
-                score={entity.risk.score}
-                lastUpdated={entity?.risk.lastUpdated}
-                FCCReview={entity?.risk.FCCAdvisoryRequired}
-                riskOverride={
-                  entity.risk.overridden ? (entity.risk.override.rating as Rating) : undefined
-                }
-                overrideDescription={
-                  entity.risk.overridden ? entity.risk.override.description : undefined
-                }
-                navigateTo="/"
-              />
-            )}
-            {entity && (
-              <CalculatedRisk
-                score={entity.risk.score}
-                riskCategories={entity.risk.riskCategories}
-              />
-            )}
-            {entity && (
-              <RiskReviewLifecycle
-                needsReview={entity?.risk.FCCAdvisoryRequired}
-                dueDiligenceLevel={entity?.risk.dueDiligenceLevel as DueDiligenceLevel}
-                lastReviewDate={entity?.risk.lastUpdated}
-              />
-            )}
+            <RiskSummary
+              score={entity.risk.score}
+              lastUpdated={entity.risk.lastUpdated}
+              FCCReview={entity.risk.FCCAdvisoryRequired}
+              riskOverride={
+                entity.risk.overridden && entity.risk.override
+                  ? (entity.risk.override.rating as Rating)
+                  : undefined
+              }
+              overrideDescription={
+                entity.risk.overridden && entity.risk.override
+                  ? entity.risk.override.description
+                  : undefined
+              }
+              navigateTo="/"
+            />
+            <CalculatedRisk score={entity.risk.score} riskCategories={entity.risk.riskCategories} />
+            <RiskReviewLifecycle
+              needsReview={entity.risk.FCCAdvisoryRequired}
+              dueDiligenceLevel={entity.risk.dueDiligenceLevel as DueDiligenceLevel}
+              lastReviewDate={entity.risk.lastUpdated}
+            />
           </Stack>
         </GridItem>
         <GridItem colSpan={{ base: 1, md: 8 }}>
           <Stack gap="{spacing.gutter}">
-            {entity && <RequestDetails items={entity.requestDetails} />}
-            {entity && <RiskCategories categories={entity.risk.riskCategories} />}
+            <RequestDetails items={entity.requestDetails} />
+            <RiskCategories categories={entity.risk.riskCategories} />
           </Stack>
         </GridItem>
       </Grid>
