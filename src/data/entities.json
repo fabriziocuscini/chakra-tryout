@@ -1,0 +1,140 @@
+{
+  "entities": [
+    {
+      "id": "1",
+      "name": "The Coca Cola Company",
+      "createdAt": "12 Dec 2023",
+      "updatedAt": "11 May 2025",
+      "description": "The Coca Cola Company is a multinational beverage company that manufactures and sells a wide range of soft drinks, including Coca-Cola, Diet Coke, and Sprite.",
+      "website": "https://www.coca-cola.com",
+      "industry": "Beverage",
+      "location": "Atlanta, Georgia, USA",
+      "employees": 100000,
+      "entityRef": "884213655278",
+      "PSID": "240213500236",
+      "status": "Onboarded",
+      "risk": {
+        "override": {
+          "rating": "high",
+          "description": "We have some reservations based on a few factors that warrant a more cautious approach at this stage. The entity is privately owned, which can present a slightly higher transparency and governance risk compared to public or regulated entities. Additionally, there is no regulatory or exchange oversight, which further contributes to the potential risk profile."
+        },
+        "rating": "medium",
+        "score": 4.77,
+        "lastUpdated": "28 Feb 2025",
+        "FCCAdvisoryRequired": true,
+        "dueDiligenceLevel": "standard",
+        "riskCategories": {
+          "Entity risk": {
+            "name": "Entity risk",
+            "calculatedRisk": 3.25,
+            "items": [
+              { "id": 1, "factor": "Entity type", "description": "Limited Company", "score": 2 },
+              {
+                "id": 2,
+                "factor": "Entity ownership",
+                "description": "Privately owned",
+                "score": 6
+              },
+              {
+                "id": 3,
+                "factor": "Oversight",
+                "description": "No regulatory/exchange oversight",
+                "score": 5
+              },
+              {
+                "id": 4,
+                "factor": "Transparency",
+                "description": "Transparent structure",
+                "score": 0
+              }
+            ]
+          },
+          "Geographic information": {
+            "name": "Geographic information",
+            "calculatedRisk": 2.5,
+            "items": [
+              {
+                "id": 1,
+                "factor": "Jurisdiction of establishment",
+                "description": "Australia",
+                "score": 2.5
+              },
+              {
+                "id": 2,
+                "factor": "Domiciliation",
+                "description": "Australia",
+                "score": 2.5
+              },
+              {
+                "id": 3,
+                "factor": "UBO Jurisdictions",
+                "description": "n/a",
+                "score": -1
+              },
+              {
+                "id": 4,
+                "factor": "Controller Jurisdictions",
+                "description": "Australia",
+                "score": 2.5
+              }
+            ]
+          },
+          "Nature and purpose of relationship": {
+            "name": "Nature and purpose of relationship",
+            "calculatedRisk": 8.33,
+            "items": [
+              {
+                "id": 1,
+                "factor": "Relationship type",
+                "description": "Client",
+                "score": 10
+              },
+              {
+                "id": 2,
+                "factor": "Distribution channel",
+                "description": "Voice, Electronic (incl. Instant Messenger)",
+                "score": 10
+              },
+              {
+                "id": 3,
+                "factor": "Existing relationship",
+                "description": "Relationship under three years",
+                "score": 5
+              }
+            ]
+          },
+          "Products and services": {
+            "name": "Products and services",
+            "calculatedRisk": 5,
+            "items": [
+              {
+                "id": 1,
+                "factor": "Physical/Financial",
+                "description": "Financial",
+                "score": 5
+              },
+              {
+                "id": 2,
+                "factor": "Products",
+                "description": "Energy - Power",
+                "score": 5
+              },
+              {
+                "id": 3,
+                "factor": "Services",
+                "description": "Clearing, Execution",
+                "score": 5
+              },
+              {
+                "id": 4,
+                "factor": "Currencies",
+                "description": "AUD (Australian Dollar)",
+                "score": -1
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
