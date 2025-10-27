@@ -36,7 +36,7 @@ export default function Entities() {
   // Show loading state
   if (isLoading) {
     return (
-      <Center h="200px">
+      <Center h="100vh">
         <Spinner size="xl" />
       </Center>
     );
@@ -91,7 +91,7 @@ export default function Entities() {
           <Select.HiddenSelect />
           <Select.Control>
             <Select.Trigger>
-              <Select.ValueText placeholder="Select framework" />
+              <Select.ValueText placeholder="Page section navigation" />
             </Select.Trigger>
             <Select.IndicatorGroup>
               <Select.Indicator />
