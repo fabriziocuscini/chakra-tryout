@@ -22,8 +22,8 @@ export const tokens = {
     ),
   },
   fonts: {
-    body: { value: 'Inter, sans-serif' },
-    heading: { value: 'Inter, sans-serif' },
+    body: { value: '"Inter Variable", Inter, sans-serif' },
+    heading: { value: '"Inter Variable", Inter, sans-serif' },
   },
   spacing: {
     gutter: {

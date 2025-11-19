@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import App from './app';
 import { routes } from './router';
+import '@fontsource-variable/inter/index.css';
 
 const router = createBrowserRouter([
   {
